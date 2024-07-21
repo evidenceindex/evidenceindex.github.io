@@ -174,6 +174,17 @@
 				return o;
 		
 			}()),
+			ready = {
+				list: [],
+				add: function(f) {
+					this.list.push(f);
+				},
+				run: function() {
+					this.list.forEach((f) => {
+						f();
+					});
+				},
+			},
 			trigger = function(t) {
 				dispatchEvent(new Event(t));
 			},
@@ -202,6 +213,30 @@
 					f(ss[i]);
 		
 				return a;
+		
+			},
+			escapeHtml = function(s) {
+		
+				// Blank, null, or undefined? Return blank string.
+					if (s === ''
+					||	s === null
+					||	s === undefined)
+						return '';
+		
+				// Escape HTML characters.
+					var a = {
+						'&': '&amp;',
+						'<': '&lt;',
+						'>': '&gt;',
+						'"': '&quot;',
+						"'": '&#39;',
+					};
+		
+					s = s.replace(/[&<>"']/g, function(x) {
+						return a[x];
+					});
+		
+				return s;
 		
 			},
 			thisHash = function() {
@@ -415,10 +450,10 @@
 		
 						}
 		
-				// Deferred script tags.
+				// Embeds.
 		
-					// Get list of deferred script tags.
-						a = parent.querySelectorAll('deferred-script');
+					// Get unloaded embeds.
+						a = parent.querySelectorAll('unloaded-script');
 		
 					// Step through list.
 						for (i=0; i < a.length; i++) {
@@ -426,8 +461,8 @@
 							// Create replacement script tag.
 								x = document.createElement('script');
 		
-							// Set deferred data attribute (so we can unload this element later).
-								x.setAttribute('data-deferred', '');
+							// Set "loaded" data attribute (so we can unload this element later).
+								x.setAttribute('data-loaded', '');
 		
 							// Set "src" attribute (if present).
 								if (a[i].getAttribute('src'))
@@ -441,6 +476,25 @@
 								a[i].replaceWith(x);
 		
 						}
+		
+				// Everything else.
+		
+					// Create "loadelements" event.
+						x = new Event('loadelements');
+		
+					// Get unloaded elements.
+						a = parent.querySelectorAll('[data-unloaded]');
+		
+					// Step through list.
+						a.forEach((element) => {
+		
+							// Clear attribute.
+								element.removeAttribute('data-unloaded');
+		
+							// Dispatch event.
+								element.dispatchEvent(x);
+		
+						});
 		
 			},
 			unloadElements = function(parent) {
@@ -497,18 +551,18 @@
 						if (e)
 							e.blur();
 		
-				// Deferred script tags.
+				// Embeds.
 				// NOTE: Disabled for now. May want to bring this back later.
 				/*
 		
-					// Get list of (previously deferred) script tags.
-						a = parent.querySelectorAll('script[data-deferred]');
+					// Get loaded embeds.
+						a = parent.querySelectorAll('script[data-loaded]');
 		
 					// Step through list.
 						for (i=0; i < a.length; i++) {
 		
-							// Create replacement deferred-script tag.
-								x = document.createElement('deferred-script');
+							// Create replacement unloaded-script tag.
+								x = document.createElement('unloaded-script');
 		
 							// Set "src" attribute (if present).
 								if (a[i].getAttribute('src'))
@@ -565,6 +619,7 @@
 				header, footer, name, hideHeader, hideFooter, disableAutoScroll,
 				h, e, ee, k,
 				locked = false,
+				title = document.title,
 				scrollPointParent = function(target) {
 		
 					while (target) {
@@ -897,6 +952,9 @@
 									currentSection.classList.remove('active');
 									currentSection.style.display = 'none';
 		
+								// Reset title.
+									document.title = title;
+		
 								// Unload elements.
 									unloadElements(currentSection);
 		
@@ -936,6 +994,10 @@
 		
 							// Trigger 'resize' event.
 								trigger('resize');
+		
+							// Update title.
+								if (section.dataset.title)
+									document.title = section.dataset.title + ' - ' + title;
 		
 							// Load elements.
 								loadElements(section);
@@ -994,6 +1056,18 @@
 									gtag('event', 'page_view', {
 										'page_title': 'Nickdoretti',
 										'page_location': '/#nickdoretti',
+									});
+								},
+							],
+						},
+					},
+					'ztl': {
+						events: {
+							onopen: [
+								function() { 
+									gtag('event', 'page_view', {
+										'page_title': 'Ztl',
+										'page_location': '/#ztl',
 									});
 								},
 							],
@@ -1326,18 +1400,27 @@
 							// Event: On Open.
 								doEvent(initialId, 'onopen');
 		
-					// Load elements.
-						loadElements(initialSection);
+					// Add ready event.
+						ready.add(() => {
 		
-						if (header)
-							loadElements(header);
+							// Update title.
+								if (initialSection.dataset.title)
+									document.title = initialSection.dataset.title + ' - ' + title;
 		
-						if (footer)
-							loadElements(footer);
+							// Load elements.
+								loadElements(initialSection);
 		
-					// Scroll to top (if not disabled for this section).
-						if (!disableAutoScroll)
-							scrollToElement(null, 'instant');
+								if (header)
+									loadElements(header);
+		
+								if (footer)
+									loadElements(footer);
+		
+							// Scroll to top (if not disabled for this section).
+								if (!disableAutoScroll)
+									scrollToElement(null, 'instant');
+		
+						});
 		
 				// Load event.
 					on('load', function() {
@@ -1989,6 +2072,7 @@
 			 */
 			effects: {
 				'blur-in': {
+					type: 'transition',
 					transition: function (speed, delay) {
 						return  'opacity ' + speed + 's ease' + (delay ? ' ' + delay + 's' : '') + ', ' +
 								'filter ' + speed + 's ease' + (delay ? ' ' + delay + 's' : '');
@@ -2003,6 +2087,7 @@
 					},
 				},
 				'zoom-in': {
+					type: 'transition',
 					transition: function (speed, delay) {
 						return  'opacity ' + speed + 's ease' + (delay ? ' ' + delay + 's' : '') + ', ' +
 								'transform ' + speed + 's ease' + (delay ? ' ' + delay + 's' : '');
@@ -2017,6 +2102,7 @@
 					},
 				},
 				'zoom-out': {
+					type: 'transition',
 					transition: function (speed, delay) {
 						return  'opacity ' + speed + 's ease' + (delay ? ' ' + delay + 's' : '') + ', ' +
 								'transform ' + speed + 's ease' + (delay ? ' ' + delay + 's' : '');
@@ -2031,6 +2117,7 @@
 					},
 				},
 				'slide-left': {
+					type: 'transition',
 					transition: function (speed, delay) {
 						return 'transform ' + speed + 's ease' + (delay ? ' ' + delay + 's' : '');
 					},
@@ -2042,6 +2129,7 @@
 					},
 				},
 				'slide-right': {
+					type: 'transition',
 					transition: function (speed, delay) {
 						return 'transform ' + speed + 's ease' + (delay ? ' ' + delay + 's' : '');
 					},
@@ -2053,6 +2141,7 @@
 					},
 				},
 				'flip-forward': {
+					type: 'transition',
 					transition: function (speed, delay) {
 						return  'opacity ' + speed + 's ease' + (delay ? ' ' + delay + 's' : '') + ', ' +
 								'transform ' + speed + 's ease' + (delay ? ' ' + delay + 's' : '');
@@ -2068,6 +2157,7 @@
 					},
 				},
 				'flip-backward': {
+					type: 'transition',
 					transition: function (speed, delay) {
 						return  'opacity ' + speed + 's ease' + (delay ? ' ' + delay + 's' : '') + ', ' +
 								'transform ' + speed + 's ease' + (delay ? ' ' + delay + 's' : '');
@@ -2083,6 +2173,7 @@
 					},
 				},
 				'flip-left': {
+					type: 'transition',
 					transition: function (speed, delay) {
 						return  'opacity ' + speed + 's ease' + (delay ? ' ' + delay + 's' : '') + ', ' +
 								'transform ' + speed + 's ease' + (delay ? ' ' + delay + 's' : '');
@@ -2098,6 +2189,7 @@
 					},
 				},
 				'flip-right': {
+					type: 'transition',
 					transition: function (speed, delay) {
 						return  'opacity ' + speed + 's ease' + (delay ? ' ' + delay + 's' : '') + ', ' +
 								'transform ' + speed + 's ease' + (delay ? ' ' + delay + 's' : '');
@@ -2113,6 +2205,7 @@
 					},
 				},
 				'tilt-left': {
+					type: 'transition',
 					transition: function (speed, delay) {
 						return  'opacity ' + speed + 's ease' + (delay ? ' ' + delay + 's' : '') + ', ' +
 								'transform ' + speed + 's ease' + (delay ? ' ' + delay + 's' : '');
@@ -2127,6 +2220,7 @@
 					},
 				},
 				'tilt-right': {
+					type: 'transition',
 					transition: function (speed, delay) {
 						return  'opacity ' + speed + 's ease' + (delay ? ' ' + delay + 's' : '') + ', ' +
 								'transform ' + speed + 's ease' + (delay ? ' ' + delay + 's' : '');
@@ -2141,6 +2235,7 @@
 					},
 				},
 				'fade-right': {
+					type: 'transition',
 					transition: function (speed, delay) {
 						return  'opacity ' + speed + 's ease' + (delay ? ' ' + delay + 's' : '') + ', ' +
 								'transform ' + speed + 's ease' + (delay ? ' ' + delay + 's' : '');
@@ -2155,6 +2250,7 @@
 					},
 				},
 				'fade-left': {
+					type: 'transition',
 					transition: function (speed, delay) {
 						return  'opacity ' + speed + 's ease' + (delay ? ' ' + delay + 's' : '') + ', ' +
 								'transform ' + speed + 's ease' + (delay ? ' ' + delay + 's' : '');
@@ -2169,6 +2265,7 @@
 					},
 				},
 				'fade-down': {
+					type: 'transition',
 					transition: function (speed, delay) {
 						return  'opacity ' + speed + 's ease' + (delay ? ' ' + delay + 's' : '') + ', ' +
 								'transform ' + speed + 's ease' + (delay ? ' ' + delay + 's' : '');
@@ -2183,6 +2280,7 @@
 					},
 				},
 				'fade-up': {
+					type: 'transition',
 					transition: function (speed, delay) {
 						return  'opacity ' + speed + 's ease' + (delay ? ' ' + delay + 's' : '') + ', ' +
 								'transform ' + speed + 's ease' + (delay ? ' ' + delay + 's' : '');
@@ -2197,6 +2295,7 @@
 					},
 				},
 				'fade-in': {
+					type: 'transition',
 					transition: function (speed, delay) {
 						return 'opacity ' + speed + 's ease' + (delay ? ' ' + delay + 's' : '');
 					},
@@ -2208,23 +2307,26 @@
 					},
 				},
 				'fade-in-background': {
-					custom: true,
-					transition: function (speed, delay) {
+					type: 'manual',
+					rewind: function() {
+		
+						this.style.removeProperty('--onvisible-delay');
+						this.style.removeProperty('--onvisible-background-color');
+		
+					},
+					play: function(speed, delay) {
 		
 						this.style.setProperty('--onvisible-speed', speed + 's');
 		
 						if (delay)
 							this.style.setProperty('--onvisible-delay', delay + 's');
 		
-					},
-					rewind: function() {
-						this.style.removeProperty('--onvisible-background-color');
-					},
-					play: function() {
 						this.style.setProperty('--onvisible-background-color', 'rgba(0,0,0,0.001)');
+		
 					},
 				},
 				'zoom-in-image': {
+					type: 'transition',
 					target: 'img',
 					transition: function (speed, delay) {
 						return 'transform ' + speed + 's ease' + (delay ? ' ' + delay + 's' : '');
@@ -2237,6 +2339,7 @@
 					},
 				},
 				'zoom-out-image': {
+					type: 'transition',
 					target: 'img',
 					transition: function (speed, delay) {
 						return 'transform ' + speed + 's ease' + (delay ? ' ' + delay + 's' : '');
@@ -2249,6 +2352,7 @@
 					},
 				},
 				'focus-image': {
+					type: 'transition',
 					target: 'img',
 					transition: function (speed, delay) {
 						return  'transform ' + speed + 's ease' + (delay ? ' ' + delay + 's' : '') + ', ' +
@@ -2261,6 +2365,312 @@
 					play: function(intensity) {
 						this.style.transform = 'none';
 						this.style.filter = 'none';
+					},
+				},
+				'wipe-up': {
+					type: 'transition',
+					transition: function (speed, delay) {
+						return	'mask-size ' + speed + 's ease' + (delay ? ' ' + delay + 's' : '');
+					},
+					rewind: function(intensity) {
+						this.style.maskComposite = 'exclude';
+						this.style.maskRepeat = 'no-repeat';
+						this.style.maskImage = 'linear-gradient(0deg, black 100%, transparent 100%)';
+						this.style.maskPosition = '0% 100%';
+						this.style.maskSize = '100% 0%';
+					},
+					play: function() {
+						this.style.maskSize = '110% 110%';
+					},
+				},
+				'wipe-down': {
+					type: 'transition',
+					transition: function (speed, delay) {
+						return	'mask-size ' + speed + 's ease' + (delay ? ' ' + delay + 's' : '');
+					},
+					rewind: function(intensity) {
+						this.style.maskComposite = 'exclude';
+						this.style.maskRepeat = 'no-repeat';
+						this.style.maskImage = 'linear-gradient(0deg, black 100%, transparent 100%)';
+						this.style.maskPosition = '0% 0%';
+						this.style.maskSize = '100% 0%';
+					},
+					play: function() {
+						this.style.maskSize = '110% 110%';
+					},
+				},
+				'wipe-left': {
+					type: 'transition',
+					transition: function (speed, delay) {
+						return	'mask-size ' + speed + 's ease' + (delay ? ' ' + delay + 's' : '');
+					},
+					rewind: function(intensity) {
+						this.style.maskComposite = 'exclude';
+						this.style.maskRepeat = 'no-repeat';
+						this.style.maskImage = 'linear-gradient(90deg, black 100%, transparent 100%)';
+						this.style.maskPosition = '100% 0%';
+						this.style.maskSize = '0% 100%';
+					},
+					play: function() {
+						this.style.maskSize = '110% 110%';
+					},
+				},
+				'wipe-right': {
+					type: 'transition',
+					transition: function (speed, delay) {
+						return	'mask-size ' + speed + 's ease' + (delay ? ' ' + delay + 's' : '');
+					},
+					rewind: function(intensity) {
+						this.style.maskComposite = 'exclude';
+						this.style.maskRepeat = 'no-repeat';
+						this.style.maskImage = 'linear-gradient(90deg, black 100%, transparent 100%)';
+						this.style.maskPosition = '0% 0%';
+						this.style.maskSize = '0% 100%';
+					},
+					play: function() {
+						this.style.maskSize = '110% 110%';
+					},
+				},
+				'wipe-diagonal': {
+					type: 'transition',
+					transition: function (speed, delay) {
+						return	'mask-size ' + speed + 's ease' + (delay ? ' ' + delay + 's' : '');
+					},
+					rewind: function(intensity) {
+						this.style.maskComposite = 'exclude';
+						this.style.maskRepeat = 'no-repeat';
+						this.style.maskImage = 'linear-gradient(45deg, black 50%, transparent 50%)';
+						this.style.maskPosition = '0% 100%';
+						this.style.maskSize = '0% 0%';
+					},
+					play: function() {
+						this.style.maskSize = '220% 220%';
+					},
+				},
+				'wipe-reverse-diagonal': {
+					type: 'transition',
+					transition: function (speed, delay) {
+						return	'mask-size ' + speed + 's ease' + (delay ? ' ' + delay + 's' : '');
+					},
+					rewind: function(intensity) {
+						this.style.maskComposite = 'exclude';
+						this.style.maskRepeat = 'no-repeat';
+						this.style.maskImage = 'linear-gradient(135deg, transparent 50%, black 50%)';
+						this.style.maskPosition = '100% 100%';
+						this.style.maskSize = '0% 0%';
+					},
+					play: function() {
+						this.style.maskSize = '220% 220%';
+					},
+				},
+				'pop-in': {
+					type: 'animate',
+					keyframes: function(intensity) {
+		
+						let diff = (intensity + 1) * 0.025;
+		
+						return [
+							{
+								opacity: 0,
+								transform: 'scale(' + (1 - diff) + ')',
+							},
+							{
+								opacity: 1,
+								transform: 'scale(' + (1 + diff) + ')',
+							},
+							{
+								opacity: 1,
+								transform: 'scale(' + (1 - (diff * 0.25)) + ')',
+								offset: 0.9,
+							},
+							{
+								opacity: 1,
+								transform: 'scale(1)',
+							}
+						];
+		
+					},
+					options: function(speed) {
+		
+						return {
+							duration: speed,
+							iterations: 1,
+						};
+		
+					},
+					rewind: function() {
+						this.style.opacity = 0;
+					},
+					play: function() {
+						this.style.opacity = 1;
+					},
+				},
+				'bounce-up': {
+					type: 'animate',
+					keyframes: function(intensity) {
+		
+						let diff = (intensity + 1) * 0.075;
+		
+						return [
+							{
+								opacity: 0,
+								transform: 'translateY(' + diff + 'rem)',
+							},
+							{
+								opacity: 1,
+								transform: 'translateY(' + (-1 * diff) + 'rem)',
+							},
+							{
+								opacity: 1,
+								transform: 'translateY(' + (diff * 0.25) + 'rem)',
+								offset: 0.9,
+							},
+							{
+								opacity: 1,
+								transform: 'translateY(0)',
+							}
+						];
+		
+					},
+					options: function(speed) {
+		
+						return {
+							duration: speed,
+							iterations: 1,
+						};
+		
+					},
+					rewind: function() {
+						this.style.opacity = 0;
+					},
+					play: function() {
+						this.style.opacity = 1;
+					},
+				},
+				'bounce-down': {
+					type: 'animate',
+					keyframes: function(intensity) {
+		
+						let diff = (intensity + 1) * 0.075;
+		
+						return [
+							{
+								opacity: 0,
+								transform: 'translateY(' + (-1 * diff) + 'rem)',
+							},
+							{
+								opacity: 1,
+								transform: 'translateY(' + diff + 'rem)',
+							},
+							{
+								opacity: 1,
+								transform: 'translateY(' + (-1 * (diff * 0.25)) + 'rem)',
+								offset: 0.9,
+							},
+							{
+								opacity: 1,
+								transform: 'translateY(0)',
+							}
+						];
+		
+					},
+					options: function(speed) {
+		
+						return {
+							duration: speed,
+							iterations: 1,
+						};
+		
+					},
+					rewind: function() {
+						this.style.opacity = 0;
+					},
+					play: function() {
+						this.style.opacity = 1;
+					},
+				},
+				'bounce-left': {
+					type: 'animate',
+					keyframes: function(intensity) {
+		
+						let diff = (intensity + 1) * 0.075;
+		
+						return [
+							{
+								opacity: 0,
+								transform: 'translateX(' + diff + 'rem)',
+							},
+							{
+								opacity: 1,
+								transform: 'translateX(' + (-1 * diff) + 'rem)',
+							},
+							{
+								opacity: 1,
+								transform: 'translateX(' + (diff * 0.25) + 'rem)',
+								offset: 0.9,
+							},
+							{
+								opacity: 1,
+								transform: 'translateX(0)',
+							}
+						];
+		
+					},
+					options: function(speed) {
+		
+						return {
+							duration: speed,
+							iterations: 1,
+						};
+		
+					},
+					rewind: function() {
+						this.style.opacity = 0;
+					},
+					play: function() {
+						this.style.opacity = 1;
+					},
+				},
+				'bounce-right': {
+					type: 'animate',
+					keyframes: function(intensity) {
+		
+						let diff = (intensity + 1) * 0.075;
+		
+						return [
+							{
+								opacity: 0,
+								transform: 'translateX(' + (-1 * diff) + 'rem)',
+							},
+							{
+								opacity: 1,
+								transform: 'translateX(' + diff + 'rem)',
+							},
+							{
+								opacity: 1,
+								transform: 'translateX(' + (-1 * (diff * 0.25)) + 'rem)',
+								offset: 0.9,
+							},
+							{
+								opacity: 1,
+								transform: 'translateX(0)',
+							}
+						];
+		
+					},
+					options: function(speed) {
+		
+						return {
+							duration: speed,
+							iterations: 1,
+						};
+		
+					},
+					rewind: function() {
+						this.style.opacity = 0;
+					},
+					play: function() {
+						this.style.opacity = 1;
 					},
 				},
 			},
@@ -2280,17 +2690,17 @@
 		
 				var	_this = this,
 					style = settings.style in this.effects ? settings.style : 'fade',
-					speed = parseInt('speed' in settings ? settings.speed : 1000) / 1000,
-					intensity = ((parseInt('intensity' in settings ? settings.intensity : 5) / 10) * 1.75) + 0.25,
-					delay = parseInt('delay' in settings ? settings.delay : 0) / 1000,
+					speed = parseInt('speed' in settings ? settings.speed : 0),
+					intensity = parseInt('intensity' in settings ? settings.intensity : 5),
+					delay = parseInt('delay' in settings ? settings.delay : 0),
 					replay = 'replay' in settings ? settings.replay : false,
-					stagger = 'stagger' in settings ? (parseInt(settings.stagger) >= 0 ? (parseInt(settings.stagger) / 1000) : false) : false,
+					stagger = 'stagger' in settings ? (parseInt(settings.stagger) >= 0 ? parseInt(settings.stagger) : false) : false,
 					staggerOrder = 'staggerOrder' in settings ? settings.staggerOrder : 'default',
 					staggerSelector = 'staggerSelector' in settings ? settings.staggerSelector : null,
 					threshold = parseInt('threshold' in settings ? settings.threshold : 3),
 					state = 'state' in settings ? settings.state : null,
 					effect = this.effects[style],
-					scrollEventThreshold;
+					enter, leave, scrollEventThreshold;
 		
 				// Determine scroll event threshold.
 					switch (threshold) {
@@ -2318,10 +2728,188 @@
 		
 					}
 		
+				// Determine effect type.
+					switch (effect.type) {
+		
+						default:
+						case 'transition':
+		
+							// Scale intensity.
+								intensity = ((intensity / 10) * 1.75) + 0.25;
+		
+							// Build enter handler.
+								enter = function(children, staggerDelay=0) {
+		
+									var _this = this,
+										transitionOrig;
+		
+									// Target provided? Use it instead of element.
+										if (effect.target)
+											_this = this.querySelector(effect.target);
+		
+									// Save original transition.
+										transitionOrig = _this.style.transition;
+		
+									// Apply temporary styles.
+										_this.style.setProperty('backface-visibility', 'hidden');
+		
+									// Apply transition.
+										_this.style.transition = effect.transition.apply(_this, [ speed / 1000, (delay + staggerDelay) / 1000 ]);
+		
+									// Play.
+										effect.play.apply(_this, [ intensity, !!children ]);
+		
+									// Delay.
+										setTimeout(function() {
+		
+											// Remove temporary styles.
+												_this.style.removeProperty('backface-visibility');
+		
+											// Restore original transition.
+												_this.style.transition = transitionOrig;
+		
+										}, (speed + delay + staggerDelay) * 2);
+		
+								};
+		
+							// Build leave handler.
+								leave = function(children) {
+		
+									var _this = this,
+										transitionOrig;
+		
+									// Target provided? Use it instead of element.
+										if (effect.target)
+											_this = this.querySelector(effect.target);
+		
+									// Save original transition.
+										transitionOrig = _this.style.transition;
+		
+									// Apply temporary styles.
+										_this.style.setProperty('backface-visibility', 'hidden');
+		
+									// Apply transition.
+										_this.style.transition = effect.transition.apply(_this, [ speed / 1000 ]);
+		
+									// Rewind.
+										effect.rewind.apply(_this, [ intensity, !!children ]);
+		
+									// Delay.
+										setTimeout(function() {
+		
+											// Remove temporary styles.
+												_this.style.removeProperty('backface-visibility');
+		
+											// Restore original transition.
+												_this.style.transition = transitionOrig;
+		
+										}, speed * 2);
+		
+								};
+		
+							break;
+		
+						case 'animate':
+		
+							// Build enter handler.
+								enter = function(children, staggerDelay=0) {
+		
+									var _this = this,
+										transitionOrig;
+		
+									// Target provided? Use it instead of element.
+										if (effect.target)
+											_this = this.querySelector(effect.target);
+		
+									// Delay.
+										setTimeout(() => {
+		
+											// Call play handler on target.
+												effect.play.apply(_this, [ ]);
+		
+											// Animate.
+												_this.animate(
+													effect.keyframes.apply(_this, [ intensity ]),
+													effect.options.apply(_this, [ speed, delay ])
+												);
+		
+										}, delay + staggerDelay);
+		
+								};
+		
+							// Build leave handler.
+								leave = function(children) {
+		
+									var _this = this,
+										transitionOrig;
+		
+									// Target provided? Use it instead of element.
+										if (effect.target)
+											_this = this.querySelector(effect.target);
+		
+									// Animate.
+		
+										// Create Animation object.
+											let a = _this.animate(
+												effect.keyframes.apply(_this, [ intensity ]),
+												effect.options.apply(_this, [ speed, delay ])
+											);
+		
+										// Play in reverse.
+											a.reverse();
+		
+										// Add finish listener.
+											a.addEventListener('finish', () => {
+		
+												// Call rewind handler on target.
+													effect.rewind.apply(_this, [ ]);
+		
+											});
+		
+								};
+		
+							break;
+		
+						case 'manual':
+		
+							// Build enter handler.
+								enter = function(children, staggerDelay=0) {
+		
+									var _this = this,
+										transitionOrig;
+		
+									// Target provided? Use it instead of element.
+										if (effect.target)
+											_this = this.querySelector(effect.target);
+		
+									// Call play handler on target.
+										effect.play.apply(_this, [ speed / 1000, (delay + staggerDelay) / 1000, intensity ]);
+		
+								};
+		
+							// Build leave handler.
+								leave = function(children) {
+		
+									var _this = this,
+										transitionOrig;
+		
+									// Target provided? Use it instead of element.
+										if (effect.target)
+											_this = this.querySelector(effect.target);
+		
+									// Call rewind handler on target.
+										effect.rewind.apply(_this, [ intensity, !!children ]);
+		
+								};
+		
+							break;
+		
+					}
+		
 				// Step through selected elements.
 					$$(selector).forEach(function(e) {
 		
-						var children, enter, leave, targetElement, triggerElement;
+						var children, targetElement, triggerElement;
 		
 						// Stagger in use, and stagger selector is "all children"? Expand text nodes.
 							if (stagger !== false
@@ -2330,95 +2918,6 @@
 		
 						// Get children.
 							children = (stagger !== false && staggerSelector) ? e.querySelectorAll(staggerSelector) : null;
-		
-						// Define handlers.
-							enter = function(staggerDelay=0) {
-		
-								var _this = this,
-									transitionOrig;
-		
-								// Target provided? Use it instead of element.
-									if (effect.target)
-										_this = this.querySelector(effect.target);
-		
-								// Not a custom effect?
-									if (!effect.custom) {
-		
-										// Save original transition.
-											transitionOrig = _this.style.transition;
-		
-										// Apply temporary styles.
-											_this.style.setProperty('backface-visibility', 'hidden');
-		
-										// Apply transition.
-											_this.style.transition = effect.transition(speed, delay + staggerDelay);
-		
-									}
-		
-								// Otherwise, call custom transition handler.
-									else
-										effect.transition.apply(_this, [speed, delay + staggerDelay]);
-		
-								// Play.
-									effect.play.apply(_this, [intensity, !!children]);
-		
-								// Not a custom effect?
-									if (!effect.custom)
-										setTimeout(function() {
-		
-											// Remove temporary styles.
-												_this.style.removeProperty('backface-visibility');
-		
-											// Restore original transition.
-												_this.style.transition = transitionOrig;
-		
-										}, (speed + delay + staggerDelay) * 1000 * 2);
-		
-							};
-		
-							leave = function() {
-		
-								var _this = this,
-									transitionOrig;
-		
-								// Target provided? Use it instead of element.
-									if (effect.target)
-										_this = this.querySelector(effect.target);
-		
-								// Not a custom effect?
-									if (!effect.custom) {
-		
-										// Save original transition.
-											transitionOrig = _this.style.transition;
-		
-										// Apply temporary styles.
-											_this.style.setProperty('backface-visibility', 'hidden');
-		
-										// Apply transition.
-											_this.style.transition = effect.transition(speed);
-		
-									}
-		
-								// Otherwise, call custom transition handler.
-									else
-										effect.transition.apply(_this, [speed]);
-		
-								// Rewind.
-									effect.rewind.apply(_this, [intensity, !!children]);
-		
-								// Not a custom effect?
-									if (!effect.custom)
-										setTimeout(function() {
-		
-											// Remove temporary styles.
-												_this.style.removeProperty('backface-visibility');
-		
-											// Restore original transition.
-												_this.style.transition = transitionOrig;
-		
-										}, speed * 1000 * 2);
-		
-							};
 		
 						// Initial rewind.
 		
@@ -2431,12 +2930,12 @@
 							// Children? Rewind each individually.
 								if (children)
 									children.forEach(function(targetElement) {
-										effect.rewind.apply(targetElement, [intensity, true]);
+										effect.rewind.apply(targetElement, [ intensity, true ]);
 									});
 		
 							// Otherwise. just rewind element.
 								else
-									effect.rewind.apply(targetElement, [intensity]);
+									effect.rewind.apply(targetElement, [ intensity ]);
 		
 						// Determine trigger element.
 							triggerElement = e;
@@ -2471,7 +2970,7 @@
 										childHandler = function(e) {
 		
 											// Apply enter handler.
-												enter.apply(e, [staggerDelay]);
+												enter.apply(e, [children, staggerDelay]);
 		
 											// Increment stagger delay.
 												staggerDelay += stagger;
@@ -2526,7 +3025,7 @@
 										children.forEach(function(e) {
 		
 											// Apply leave handler.
-												leave.apply(e);
+												leave.apply(e, [children]);
 		
 										});
 		
@@ -2562,7 +3061,7 @@
 							s = s.replace(
 								this.regex,
 								function(x, a) {
-									return '<text-node>' + a + '</text-node>';
+									return '<text-node>' + escapeHtml(a) + '</text-node>';
 								}
 							);
 		
@@ -3520,14 +4019,14 @@
 		onvisible.add('#text01', { style: 'fade-down', speed: 1000, intensity: 5, threshold: 3, delay: 0, replay: false });
 		onvisible.add('h1.style2, h2.style2, h3.style2, p.style2', { style: 'fade-up', speed: 1000, intensity: 6, threshold: 3, delay: 250, replay: false });
 		onvisible.add('#buttons02', { style: 'fade-up', speed: 1000, intensity: 5, threshold: 3, delay: 250, replay: false });
+		onvisible.add('#divider03', { style: 'fade-in', speed: 1000, intensity: 5, threshold: 3, delay: 375, replay: false });
 		onvisible.add('h1.style7, h2.style7, h3.style7, p.style7', { style: 'fade-down', speed: 1125, intensity: 1, threshold: 3, delay: 625, replay: false });
 		onvisible.add('#buttons03', { style: 'fade-up', speed: 1000, intensity: 5, threshold: 3, delay: 0, replay: false });
 		onvisible.add('#text15', { style: 'fade-down', speed: 1000, intensity: 5, threshold: 3, delay: 0, replay: false });
-		onvisible.add('#divider03', { style: 'fade-in', speed: 1000, intensity: 5, threshold: 3, delay: 375, replay: false });
-		onvisible.add('#text41', { style: 'fade-down', speed: 1000, intensity: 5, threshold: 3, delay: 0, replay: false });
-		onvisible.add('h1.style5, h2.style5, h3.style5, p.style5', { style: 'fade-down', speed: 1000, intensity: 5, threshold: 3, delay: 0, replay: false });
+		onvisible.add('#text50', { style: 'fade-down', speed: 1125, intensity: 1, threshold: 3, delay: 625, replay: false });
 		onvisible.add('h1.style3, h2.style3, h3.style3, p.style3', { style: 'fade-up', speed: 1000, intensity: 5, threshold: 3, delay: 0, replay: false });
 		onvisible.add('.links.style1', { style: 'fade-up', speed: 1000, intensity: 5, threshold: 3, delay: 0, replay: false });
+		onvisible.add('h1.style5, h2.style5, h3.style5, p.style5', { style: 'fade-down', speed: 1000, intensity: 5, threshold: 3, delay: 0, replay: false });
 		onvisible.add('#text09', { style: 'fade-up', speed: 1000, intensity: 5, threshold: 3, delay: 0, replay: false });
 		onvisible.add('#text28', { style: 'fade-up', speed: 1000, intensity: 5, threshold: 3, delay: 0, replay: false });
 		onvisible.add('#gallery02', { style: 'fade-down', speed: 1375, intensity: 10, threshold: 3, delay: 0, stagger: 125, staggerSelector: ':scope ul > li', replay: false });
@@ -3535,6 +4034,7 @@
 		onvisible.add('h1.style6, h2.style6, h3.style6, p.style6', { style: 'fade-down', speed: 1000, intensity: 5, threshold: 3, delay: 0, replay: false });
 		onvisible.add('.container.style3', { style: 'fade-in', speed: 500, intensity: 2, threshold: 3, delay: 0, replay: false });
 		onvisible.add('#container08', { style: 'fade-in', speed: 500, intensity: 2, threshold: 3, delay: 0, replay: false });
+		onvisible.add('#buttons09', { style: 'fade-up', speed: 1000, intensity: 5, threshold: 3, delay: 250, replay: false });
 		onvisible.add('.container.style4', { style: 'fade-in', speed: 500, intensity: 2, threshold: 3, delay: 0, replay: false });
 		onvisible.add('#image05', { style: 'fade-up', speed: 1000, intensity: 5, threshold: 3, delay: 0, replay: false });
 		onvisible.add('.container.style1', { style: 'fade-in', speed: 500, intensity: 2, threshold: 3, delay: 0, replay: false });
@@ -3553,6 +4053,7 @@
 		onvisible.add('#text21', { style: 'fade-down', speed: 1000, intensity: 5, threshold: 3, delay: 0, replay: false });
 		onvisible.add('hr.style2', { style: 'fade-in', speed: 1000, intensity: 5, threshold: 3, delay: 0, replay: false });
 		onvisible.add('#text10', { style: 'fade-up', speed: 1000, intensity: 5, threshold: 3, delay: 0, replay: false });
+		onvisible.add('#text61', { style: 'fade-down', speed: 1125, intensity: 1, threshold: 3, delay: 625, replay: false });
 		onvisible.add('.buttons.style3', { style: 'fade-up', speed: 1000, intensity: 5, threshold: 3, delay: 0, replay: false });
 		onvisible.add('#buttons08', { style: 'fade-up', speed: 1000, intensity: 5, threshold: 3, delay: 0, replay: false });
 		onvisible.add('#text34', { style: 'fade-down', speed: 1000, intensity: 5, threshold: 3, delay: 0, replay: false });
@@ -3582,5 +4083,8 @@
 		onvisible.add('#divider02', { style: 'fade-in', speed: 1000, intensity: 5, threshold: 3, delay: 375, replay: false });
 		onvisible.add('#container37', { style: 'fade-in', speed: 500, intensity: 2, threshold: 3, delay: 0, replay: false });
 		onvisible.add('#gallery12', { style: 'fade-up', speed: 1000, intensity: 5, threshold: 3, delay: 0, replay: false });
+	
+	// Run ready handlers.
+		ready.run();
 
 })();
