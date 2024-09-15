@@ -5367,7 +5367,59 @@ hr.style2:before {
 	width: 34rem;
 }
 
-.video.style2 .frame:before {
+#video01 .frame:before {
+	padding-top: 56.25%;
+}
+
+#video06 .frame:before {
+	padding-top: 56.25%;
+}
+
+#video05 .frame:before {
+	padding-top: 56.25%;
+}
+
+#video08 .frame:before {
+	padding-top: 56.25%;
+}
+
+#video11 .frame:before {
+	padding-top: 56.25%;
+}
+
+#video13 .frame:before {
+	padding-top: 56.25%;
+}
+
+#video15 .frame:before {
+	padding-top: 56.25%;
+}
+
+#video17 .frame:before {
+	padding-top: 56.25%;
+}
+
+#video09 .frame:before {
+	padding-top: 56.25%;
+}
+
+#video12 .frame:before {
+	padding-top: 56.25%;
+}
+
+#video14 .frame:before {
+	padding-top: 56.25%;
+}
+
+#video16 .frame:before {
+	padding-top: 56.25%;
+}
+
+#video18 .frame:before {
+	padding-top: 56.25%;
+}
+
+#video04 .frame:before {
 	padding-top: 56.25%;
 }
 
