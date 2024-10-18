@@ -763,29 +763,6 @@ h1.style6 span.p:nth-child(n + 2), h2.style6 span.p:nth-child(n + 2), h3.style6 
 	margin-top: 1rem;
 }
 
-#text61 {
-	text-transform: uppercase;
-	color: #FFB800;
-	font-family: 'Sora', sans-serif;
-	letter-spacing: 0.05rem;
-	width: calc(100% + 0.05rem);
-	font-size: 1em;
-	line-height: 0.75;
-	font-weight: 800;
-}
-
-#text61 a {
-	text-decoration: underline;
-}
-
-#text61 a:hover {
-	text-decoration: none;
-}
-
-#text61 span.p:nth-child(n + 2) {
-	margin-top: 1rem;
-}
-
 #text34 {
 	text-transform: uppercase;
 	color: #FFFFFF;
@@ -5336,34 +5313,42 @@ hr.style2:before {
 }
 
 #video03 video {
+	border-radius: 0rem;
 	width: 55.625rem;
 }
 
 #video03 .frame {
+	border-radius: 0rem;
 	width: 55.625rem;
 }
 
 .video.style1 video {
+	border-radius: 0rem;
 	width: 28.375rem;
 }
 
 .video.style1 .frame {
+	border-radius: 0rem;
 	width: 28.375rem;
 }
 
 #video02 video {
+	border-radius: 0rem;
 	width: 34rem;
 }
 
 #video02 .frame {
+	border-radius: 0rem;
 	width: 34rem;
 }
 
 .video.style2 video {
+	border-radius: 0rem;
 	width: 34rem;
 }
 
 .video.style2 .frame {
+	border-radius: 0rem;
 	width: 34rem;
 }
 
@@ -9672,13 +9657,6 @@ hr.style2:before {
 		line-height: 1.125;
 	}
 	
-	#text61 {
-		letter-spacing: 0.04375rem;
-		width: calc(100% + 0.04375rem);
-		font-size: 0.5em;
-		line-height: 0.75;
-	}
-	
 	#text34 {
 		letter-spacing: 0.35rem;
 		width: calc(100% + 0.35rem);
@@ -10724,10 +10702,6 @@ hr.style2:before {
 	
 	#text10 {
 		font-size: 0.875em;
-	}
-	
-	#text61 {
-		font-size: 0.5em;
 	}
 	
 	#text34 {

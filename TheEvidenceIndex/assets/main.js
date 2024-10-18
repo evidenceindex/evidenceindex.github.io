@@ -4054,7 +4054,6 @@
 		onvisible.add('#text21', { style: 'fade-down', speed: 1000, intensity: 5, threshold: 3, delay: 0, replay: false });
 		onvisible.add('hr.style2', { style: 'fade-in', speed: 1000, intensity: 5, threshold: 3, delay: 0, replay: false });
 		onvisible.add('#text10', { style: 'fade-up', speed: 1000, intensity: 5, threshold: 3, delay: 0, replay: false });
-		onvisible.add('#text61', { style: 'fade-down', speed: 1125, intensity: 1, threshold: 3, delay: 625, replay: false });
 		onvisible.add('.buttons.style3', { style: 'fade-up', speed: 1000, intensity: 5, threshold: 3, delay: 0, replay: false });
 		onvisible.add('#buttons08', { style: 'fade-up', speed: 1000, intensity: 5, threshold: 3, delay: 0, replay: false });
 		onvisible.add('#text34', { style: 'fade-down', speed: 1000, intensity: 5, threshold: 3, delay: 0, replay: false });
