@@ -4065,7 +4065,7 @@
 		onvisible.add('#container11', { style: 'fade-in', speed: 500, intensity: 2, threshold: 3, delay: 0, replay: false });
 		onvisible.add('#text21', { style: 'fade-down', speed: 1000, intensity: 5, threshold: 3, delay: 0, replay: false });
 		onvisible.add('#text10', { style: 'fade-up', speed: 1000, intensity: 5, threshold: 3, delay: 0, replay: false });
-		onvisible.add('.buttons.style3', { style: 'fade-up', speed: 1000, intensity: 5, threshold: 3, delay: 0, replay: false });
+		onvisible.add('#buttons05', { style: 'fade-up', speed: 1000, intensity: 5, threshold: 3, delay: 0, replay: false });
 		onvisible.add('.gallery.style2', { style: 'fade-up', speed: 1000, intensity: 5, threshold: 3, delay: 0, replay: false });
 		onvisible.add('#container23', { style: 'fade-in', speed: 500, intensity: 2, threshold: 3, delay: 0, replay: false });
 		onvisible.add('#text38', { style: 'fade-down', speed: 1000, intensity: 5, threshold: 3, delay: 0, replay: false });
@@ -4088,6 +4088,7 @@
 		onvisible.add('#container37', { style: 'fade-in', speed: 500, intensity: 2, threshold: 3, delay: 0, replay: false });
 		onvisible.add('#gallery12', { style: 'fade-up', speed: 1000, intensity: 5, threshold: 3, delay: 0, replay: false });
 		onvisible.add('#container03', { style: 'fade-in', speed: 500, intensity: 2, threshold: 3, delay: 0, replay: false });
+		onvisible.add('.buttons.style3', { style: 'fade-up', speed: 1000, intensity: 5, threshold: 3, delay: 0, replay: false });
 		onvisible.add('#container04', { style: 'fade-in', speed: 500, intensity: 2, threshold: 3, delay: 0, replay: false });
 	
 	// Run ready handlers.
