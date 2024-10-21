@@ -1253,17 +1253,29 @@
 							],
 						},
 					},
-					'dandermain': {
+					'danderdcordlogs': {
 						events: {
 							onopen: [
 								function() { 
 									gtag('event', 'page_view', {
-										'page_title': 'Dandermain',
-										'page_location': '/#dandermain',
+										'page_title': 'Danderdcordlogs',
+										'page_location': '/#danderdcordlogs',
 									});
 								},
 								function() { 
 									setTimeout(function() { location.href = '#dander'; }, 1000);
+								},
+							],
+						},
+					},
+					'nickserverlogs': {
+						events: {
+							onopen: [
+								function() { 
+									gtag('event', 'page_view', {
+										'page_title': 'Nickserverlogs',
+										'page_location': '/#nickserverlogs',
+									});
 								},
 							],
 						},
@@ -3970,9 +3982,9 @@
 			scheme: 'dark',
 		});
 	
-	// Gallery: gallery10.
+	// Gallery: gallery08.
 		_lightboxGallery.init({
-			id: 'gallery10',
+			id: 'gallery08',
 			navigation: true,
 			captions: true,
 			mobile: true,
@@ -3980,9 +3992,9 @@
 			scheme: 'dark',
 		});
 	
-	// Gallery: gallery08.
+	// Gallery: gallery10.
 		_lightboxGallery.init({
-			id: 'gallery08',
+			id: 'gallery10',
 			navigation: true,
 			captions: true,
 			mobile: true,
@@ -4025,16 +4037,16 @@
 		onvisible.add('#text01', { style: 'fade-down', speed: 1000, intensity: 5, threshold: 3, delay: 0, replay: false });
 		onvisible.add('h1.style2, h2.style2, h3.style2, p.style2', { style: 'fade-up', speed: 1000, intensity: 6, threshold: 3, delay: 250, replay: false });
 		onvisible.add('#buttons02', { style: 'fade-up', speed: 1000, intensity: 5, threshold: 3, delay: 250, replay: false });
-		onvisible.add('#divider03', { style: 'fade-in', speed: 1000, intensity: 5, threshold: 3, delay: 375, replay: false });
 		onvisible.add('h1.style7, h2.style7, h3.style7, p.style7', { style: 'fade-down', speed: 1125, intensity: 1, threshold: 3, delay: 625, replay: false });
-		onvisible.add('#buttons03', { style: 'fade-up', speed: 1000, intensity: 5, threshold: 3, delay: 0, replay: false });
 		onvisible.add('#text15', { style: 'fade-down', speed: 1000, intensity: 5, threshold: 3, delay: 0, replay: false });
+		onvisible.add('hr.style2', { style: 'fade-in', speed: 1000, intensity: 5, threshold: 3, delay: 0, replay: false });
+		onvisible.add('#buttons03', { style: 'fade-up', speed: 1000, intensity: 5, threshold: 3, delay: 0, replay: false });
 		onvisible.add('h1.style3, h2.style3, h3.style3, p.style3', { style: 'fade-up', speed: 1000, intensity: 5, threshold: 3, delay: 0, replay: false });
 		onvisible.add('.links.style1', { style: 'fade-up', speed: 1000, intensity: 5, threshold: 3, delay: 0, replay: false });
 		onvisible.add('h1.style5, h2.style5, h3.style5, p.style5', { style: 'fade-down', speed: 1000, intensity: 5, threshold: 3, delay: 0, replay: false });
 		onvisible.add('#text09', { style: 'fade-up', speed: 1000, intensity: 5, threshold: 3, delay: 0, replay: false });
 		onvisible.add('#text28', { style: 'fade-up', speed: 1000, intensity: 5, threshold: 3, delay: 0, replay: false });
-		onvisible.add('#gallery02', { style: 'fade-down', speed: 1375, intensity: 10, threshold: 3, delay: 0, stagger: 125, staggerSelector: ':scope ul > li', replay: false });
+		onvisible.add('#gallery02', { style: 'fade-up', speed: 1000, intensity: 5, threshold: 3, delay: 0, replay: false });
 		onvisible.add('#container10', { style: 'fade-in', speed: 500, intensity: 2, threshold: 3, delay: 0, replay: false });
 		onvisible.add('h1.style6, h2.style6, h3.style6, p.style6', { style: 'fade-down', speed: 1000, intensity: 5, threshold: 3, delay: 0, replay: false });
 		onvisible.add('.container.style3', { style: 'fade-in', speed: 500, intensity: 2, threshold: 3, delay: 0, replay: false });
@@ -4052,27 +4064,19 @@
 		onvisible.add('.gallery.style1', { style: 'fade-up', speed: 1000, intensity: 5, threshold: 3, delay: 0, replay: false });
 		onvisible.add('#container11', { style: 'fade-in', speed: 500, intensity: 2, threshold: 3, delay: 0, replay: false });
 		onvisible.add('#text21', { style: 'fade-down', speed: 1000, intensity: 5, threshold: 3, delay: 0, replay: false });
-		onvisible.add('hr.style2', { style: 'fade-in', speed: 1000, intensity: 5, threshold: 3, delay: 0, replay: false });
 		onvisible.add('#text10', { style: 'fade-up', speed: 1000, intensity: 5, threshold: 3, delay: 0, replay: false });
 		onvisible.add('.buttons.style3', { style: 'fade-up', speed: 1000, intensity: 5, threshold: 3, delay: 0, replay: false });
-		onvisible.add('#buttons08', { style: 'fade-up', speed: 1000, intensity: 5, threshold: 3, delay: 0, replay: false });
-		onvisible.add('#text34', { style: 'fade-down', speed: 1000, intensity: 5, threshold: 3, delay: 0, replay: false });
 		onvisible.add('.gallery.style2', { style: 'fade-up', speed: 1000, intensity: 5, threshold: 3, delay: 0, replay: false });
-		onvisible.add('#text31', { style: 'fade-down', speed: 1000, intensity: 5, threshold: 3, delay: 0, replay: false });
 		onvisible.add('#container23', { style: 'fade-in', speed: 500, intensity: 2, threshold: 3, delay: 0, replay: false });
-		onvisible.add('#text33', { style: 'fade-down', speed: 1000, intensity: 5, threshold: 3, delay: 0, replay: false });
-		onvisible.add('#text42', { style: 'fade-down', speed: 1000, intensity: 5, threshold: 3, delay: 0, replay: false });
 		onvisible.add('#text38', { style: 'fade-down', speed: 1000, intensity: 5, threshold: 3, delay: 0, replay: false });
-		onvisible.add('#text39', { style: 'fade-down', speed: 1000, intensity: 5, threshold: 3, delay: 0, replay: false });
 		onvisible.add('#container25', { style: 'fade-in', speed: 500, intensity: 2, threshold: 3, delay: 0, replay: false });
-		onvisible.add('#text43', { style: 'fade-down', speed: 1000, intensity: 5, threshold: 3, delay: 0, replay: false });
 		onvisible.add('#container24', { style: 'fade-in', speed: 500, intensity: 2, threshold: 3, delay: 0, replay: false });
-		onvisible.add('#text44', { style: 'fade-down', speed: 1000, intensity: 5, threshold: 3, delay: 0, replay: false });
-		onvisible.add('#buttons07', { style: 'fade-up', speed: 1000, intensity: 5, threshold: 3, delay: 0, replay: false });
-		onvisible.add('#text46', { style: 'fade-down', speed: 1000, intensity: 5, threshold: 3, delay: 0, replay: false });
-		onvisible.add('#gallery10', { style: 'fade-up', speed: 1000, intensity: 5, threshold: 3, delay: 0, replay: false });
 		onvisible.add('#text36', { style: 'fade-down', speed: 1000, intensity: 5, threshold: 3, delay: 0, replay: false });
 		onvisible.add('#gallery08', { style: 'fade-up', speed: 1000, intensity: 5, threshold: 3, delay: 0, replay: false });
+		onvisible.add('#divider01', { style: 'fade-in', speed: 1000, intensity: 5, threshold: 3, delay: 375, replay: false });
+		onvisible.add('#text46', { style: 'fade-down', speed: 1000, intensity: 5, threshold: 3, delay: 0, replay: false });
+		onvisible.add('#gallery10', { style: 'fade-up', speed: 1000, intensity: 5, threshold: 3, delay: 0, replay: false });
+		onvisible.add('#buttons01', { style: 'fade-up', speed: 1000, intensity: 5, threshold: 3, delay: 0, replay: false });
 		onvisible.add('#text40', { style: 'fade-down', speed: 1000, intensity: 5, threshold: 3, delay: 0, replay: false });
 		onvisible.add('#buttons06', { style: 'fade-up', speed: 1000, intensity: 5, threshold: 3, delay: 0, replay: false });
 		onvisible.add('#text47', { style: 'fade-down', speed: 1000, intensity: 5, threshold: 3, delay: 0, replay: false });
@@ -4083,6 +4087,8 @@
 		onvisible.add('#divider02', { style: 'fade-in', speed: 1000, intensity: 5, threshold: 3, delay: 375, replay: false });
 		onvisible.add('#container37', { style: 'fade-in', speed: 500, intensity: 2, threshold: 3, delay: 0, replay: false });
 		onvisible.add('#gallery12', { style: 'fade-up', speed: 1000, intensity: 5, threshold: 3, delay: 0, replay: false });
+		onvisible.add('#container03', { style: 'fade-in', speed: 500, intensity: 2, threshold: 3, delay: 0, replay: false });
+		onvisible.add('#container04', { style: 'fade-in', speed: 500, intensity: 2, threshold: 3, delay: 0, replay: false });
 	
 	// Run ready handlers.
 		ready.run();
