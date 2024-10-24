@@ -2386,99 +2386,213 @@
 					},
 				},
 				'wipe-up': {
-					type: 'transition',
-					transition: function (speed, delay) {
-						return	'mask-size ' + speed + 's ease' + (delay ? ' ' + delay + 's' : '');
+					type: 'animate',
+					keyframes: function(intensity) {
+		
+						return [
+							{
+								maskSize: '100% 0%',
+								maskImage: 'linear-gradient(90deg, black 100%, transparent 100%)',
+							},
+							{
+								maskSize: '110% 110%',
+								maskImage: 'linear-gradient(90deg, black 100%, transparent 100%)',
+							},
+						];
+		
 					},
-					rewind: function(intensity) {
+					options: function(speed) {
+		
+						return {
+							duration: speed,
+							iterations: 1,
+							easing: 'ease',
+						};
+		
+					},
+					rewind: function() {
+						this.style.opacity = 0;
 						this.style.maskComposite = 'exclude';
 						this.style.maskRepeat = 'no-repeat';
-						this.style.maskImage = 'linear-gradient(0deg, black 100%, transparent 100%)';
 						this.style.maskPosition = '0% 100%';
-						this.style.maskSize = '100% 0%';
 					},
 					play: function() {
-						this.style.maskSize = '110% 110%';
+						this.style.opacity = 1;
 					},
 				},
 				'wipe-down': {
-					type: 'transition',
-					transition: function (speed, delay) {
-						return	'mask-size ' + speed + 's ease' + (delay ? ' ' + delay + 's' : '');
+					type: 'animate',
+					keyframes: function(intensity) {
+		
+						return [
+							{
+								maskSize: '100% 0%',
+								maskImage: 'linear-gradient(90deg, black 100%, transparent 100%)',
+							},
+							{
+								maskSize: '110% 110%',
+								maskImage: 'linear-gradient(90deg, black 100%, transparent 100%)',
+							},
+						];
+		
 					},
-					rewind: function(intensity) {
+					options: function(speed) {
+		
+						return {
+							duration: speed,
+							iterations: 1,
+							easing: 'ease',
+						};
+		
+					},
+					rewind: function() {
+						this.style.opacity = 0;
 						this.style.maskComposite = 'exclude';
 						this.style.maskRepeat = 'no-repeat';
-						this.style.maskImage = 'linear-gradient(0deg, black 100%, transparent 100%)';
 						this.style.maskPosition = '0% 0%';
-						this.style.maskSize = '100% 0%';
 					},
 					play: function() {
-						this.style.maskSize = '110% 110%';
+						this.style.opacity = 1;
 					},
 				},
 				'wipe-left': {
-					type: 'transition',
-					transition: function (speed, delay) {
-						return	'mask-size ' + speed + 's ease' + (delay ? ' ' + delay + 's' : '');
+					type: 'animate',
+					keyframes: function(intensity) {
+		
+						return [
+							{
+								maskSize: '0% 100%',
+								maskImage: 'linear-gradient(90deg, black 100%, transparent 100%)',
+							},
+							{
+								maskSize: '110% 110%',
+								maskImage: 'linear-gradient(90deg, black 100%, transparent 100%)',
+							},
+						];
+		
 					},
-					rewind: function(intensity) {
+					options: function(speed) {
+		
+						return {
+							duration: speed,
+							iterations: 1,
+							easing: 'ease',
+						};
+		
+					},
+					rewind: function() {
+						this.style.opacity = 0;
 						this.style.maskComposite = 'exclude';
 						this.style.maskRepeat = 'no-repeat';
-						this.style.maskImage = 'linear-gradient(90deg, black 100%, transparent 100%)';
 						this.style.maskPosition = '100% 0%';
-						this.style.maskSize = '0% 100%';
 					},
 					play: function() {
-						this.style.maskSize = '110% 110%';
+						this.style.opacity = 1;
 					},
 				},
 				'wipe-right': {
-					type: 'transition',
-					transition: function (speed, delay) {
-						return	'mask-size ' + speed + 's ease' + (delay ? ' ' + delay + 's' : '');
+					type: 'animate',
+					keyframes: function(intensity) {
+		
+						return [
+							{
+								maskSize: '0% 100%',
+								maskImage: 'linear-gradient(90deg, black 100%, transparent 100%)',
+							},
+							{
+								maskSize: '110% 110%',
+								maskImage: 'linear-gradient(90deg, black 100%, transparent 100%)',
+							},
+						];
+		
 					},
-					rewind: function(intensity) {
+					options: function(speed) {
+		
+						return {
+							duration: speed,
+							iterations: 1,
+							easing: 'ease',
+						};
+		
+					},
+					rewind: function() {
+						this.style.opacity = 0;
 						this.style.maskComposite = 'exclude';
 						this.style.maskRepeat = 'no-repeat';
-						this.style.maskImage = 'linear-gradient(90deg, black 100%, transparent 100%)';
 						this.style.maskPosition = '0% 0%';
-						this.style.maskSize = '0% 100%';
 					},
 					play: function() {
-						this.style.maskSize = '110% 110%';
+						this.style.opacity = 1;
 					},
 				},
 				'wipe-diagonal': {
-					type: 'transition',
-					transition: function (speed, delay) {
-						return	'mask-size ' + speed + 's ease' + (delay ? ' ' + delay + 's' : '');
+					type: 'animate',
+					keyframes: function(intensity) {
+		
+						return [
+							{
+								maskSize: '0% 0%',
+								maskImage: 'linear-gradient(45deg, black 50%, transparent 50%)',
+							},
+							{
+								maskSize: '220% 220%',
+								maskImage: 'linear-gradient(45deg, black 50%, transparent 50%)',
+							},
+						];
+		
 					},
-					rewind: function(intensity) {
+					options: function(speed) {
+		
+						return {
+							duration: speed,
+							iterations: 1,
+							easing: 'ease',
+						};
+		
+					},
+					rewind: function() {
+						this.style.opacity = 0;
 						this.style.maskComposite = 'exclude';
 						this.style.maskRepeat = 'no-repeat';
-						this.style.maskImage = 'linear-gradient(45deg, black 50%, transparent 50%)';
 						this.style.maskPosition = '0% 100%';
-						this.style.maskSize = '0% 0%';
 					},
 					play: function() {
-						this.style.maskSize = '220% 220%';
+						this.style.opacity = 1;
 					},
 				},
 				'wipe-reverse-diagonal': {
-					type: 'transition',
-					transition: function (speed, delay) {
-						return	'mask-size ' + speed + 's ease' + (delay ? ' ' + delay + 's' : '');
+					type: 'animate',
+					keyframes: function(intensity) {
+		
+						return [
+							{
+								maskSize: '0% 0%',
+								maskImage: 'linear-gradient(135deg, transparent 50%, black 50%)',
+							},
+							{
+								maskSize: '220% 220%',
+								maskImage: 'linear-gradient(135deg, transparent 50%, black 50%)',
+							},
+						];
+		
 					},
-					rewind: function(intensity) {
+					options: function(speed) {
+		
+						return {
+							duration: speed,
+							iterations: 1,
+							easing: 'ease',
+						};
+		
+					},
+					rewind: function() {
+						this.style.opacity = 0;
 						this.style.maskComposite = 'exclude';
 						this.style.maskRepeat = 'no-repeat';
-						this.style.maskImage = 'linear-gradient(135deg, transparent 50%, black 50%)';
 						this.style.maskPosition = '100% 100%';
-						this.style.maskSize = '0% 0%';
 					},
 					play: function() {
-						this.style.maskSize = '220% 220%';
+						this.style.opacity = 1;
 					},
 				},
 				'pop-in': {
@@ -4049,17 +4163,13 @@
 		onvisible.add('#gallery02', { style: 'fade-up', speed: 1000, intensity: 5, threshold: 3, delay: 0, replay: false });
 		onvisible.add('#container10', { style: 'fade-in', speed: 500, intensity: 2, threshold: 3, delay: 0, replay: false });
 		onvisible.add('h1.style6, h2.style6, h3.style6, p.style6', { style: 'fade-down', speed: 1000, intensity: 5, threshold: 3, delay: 0, replay: false });
-		onvisible.add('.container.style3', { style: 'fade-in', speed: 500, intensity: 2, threshold: 3, delay: 0, replay: false });
+		onvisible.add('#container14', { style: 'fade-in', speed: 500, intensity: 2, threshold: 3, delay: 0, replay: false });
 		onvisible.add('#container08', { style: 'fade-in', speed: 500, intensity: 2, threshold: 3, delay: 0, replay: false });
 		onvisible.add('#buttons09', { style: 'fade-up', speed: 1000, intensity: 5, threshold: 3, delay: 250, replay: false });
-		onvisible.add('.container.style4', { style: 'fade-in', speed: 500, intensity: 2, threshold: 3, delay: 0, replay: false });
-		onvisible.add('#image05', { style: 'fade-up', speed: 1000, intensity: 5, threshold: 3, delay: 0, replay: false });
-		onvisible.add('.container.style1', { style: 'fade-in', speed: 500, intensity: 2, threshold: 3, delay: 0, replay: false });
-		onvisible.add('#image08', { style: 'fade-up', speed: 1000, intensity: 5, threshold: 3, delay: 0, replay: false });
-		onvisible.add('#image09', { style: 'fade-up', speed: 1000, intensity: 5, threshold: 3, delay: 0, replay: false });
-		onvisible.add('.container.style5', { style: 'fade-in', speed: 500, intensity: 2, threshold: 3, delay: 0, replay: false });
 		onvisible.add('#text30', { style: 'fade-down', speed: 1000, intensity: 5, threshold: 3, delay: 0, replay: false });
-		onvisible.add('#container18', { style: 'fade-in', speed: 500, intensity: 2, threshold: 3, delay: 0, replay: false });
+		onvisible.add('.image.style1', { style: 'fade-up', speed: 1000, intensity: 5, threshold: 3, delay: 0, replay: false });
+		onvisible.add('#container16', { style: 'fade-in', speed: 500, intensity: 2, threshold: 3, delay: 0, replay: false });
+		onvisible.add('.container.style5', { style: 'fade-in', speed: 500, intensity: 2, threshold: 3, delay: 0, replay: false });
 		onvisible.add('#container06', { style: 'fade-in', speed: 500, intensity: 2, threshold: 3, delay: 0, replay: false });
 		onvisible.add('.gallery.style1', { style: 'fade-up', speed: 1000, intensity: 5, threshold: 3, delay: 0, replay: false });
 		onvisible.add('#container11', { style: 'fade-in', speed: 500, intensity: 2, threshold: 3, delay: 0, replay: false });
@@ -4067,6 +4177,7 @@
 		onvisible.add('#text10', { style: 'fade-up', speed: 1000, intensity: 5, threshold: 3, delay: 0, replay: false });
 		onvisible.add('#buttons05', { style: 'fade-up', speed: 1000, intensity: 5, threshold: 3, delay: 0, replay: false });
 		onvisible.add('.gallery.style2', { style: 'fade-up', speed: 1000, intensity: 5, threshold: 3, delay: 0, replay: false });
+		onvisible.add('#container05', { style: 'fade-in', speed: 500, intensity: 2, threshold: 3, delay: 0, replay: false });
 		onvisible.add('#container23', { style: 'fade-in', speed: 500, intensity: 2, threshold: 3, delay: 0, replay: false });
 		onvisible.add('#text38', { style: 'fade-down', speed: 1000, intensity: 5, threshold: 3, delay: 0, replay: false });
 		onvisible.add('#container25', { style: 'fade-in', speed: 500, intensity: 2, threshold: 3, delay: 0, replay: false });
@@ -4080,8 +4191,8 @@
 		onvisible.add('#text40', { style: 'fade-down', speed: 1000, intensity: 5, threshold: 3, delay: 0, replay: false });
 		onvisible.add('#buttons06', { style: 'fade-up', speed: 1000, intensity: 5, threshold: 3, delay: 0, replay: false });
 		onvisible.add('#text47', { style: 'fade-down', speed: 1000, intensity: 5, threshold: 3, delay: 0, replay: false });
+		onvisible.add('#gallery11', { style: 'fade-up', speed: 1000, intensity: 5, threshold: 3, delay: 0, replay: false });
 		onvisible.add('#container36', { style: 'fade-in', speed: 500, intensity: 2, threshold: 3, delay: 0, replay: false });
-		onvisible.add('h1.style1, h2.style1, h3.style1, p.style1', { style: 'fade-down', speed: 1000, intensity: 5, threshold: 3, delay: 0, replay: false });
 		onvisible.add('#gallery09', { style: 'fade-up', speed: 1000, intensity: 5, threshold: 3, delay: 0, replay: false });
 		onvisible.add('#container38', { style: 'fade-in', speed: 500, intensity: 2, threshold: 3, delay: 0, replay: false });
 		onvisible.add('#divider02', { style: 'fade-in', speed: 1000, intensity: 5, threshold: 3, delay: 375, replay: false });
