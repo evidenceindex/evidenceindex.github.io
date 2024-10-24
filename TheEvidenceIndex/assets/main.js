@@ -4162,11 +4162,16 @@
 		onvisible.add('#text28', { style: 'fade-up', speed: 1000, intensity: 5, threshold: 3, delay: 0, replay: false });
 		onvisible.add('#gallery02', { style: 'fade-up', speed: 1000, intensity: 5, threshold: 3, delay: 0, replay: false });
 		onvisible.add('#container10', { style: 'fade-in', speed: 500, intensity: 2, threshold: 3, delay: 0, replay: false });
-		onvisible.add('h1.style6, h2.style6, h3.style6, p.style6', { style: 'fade-down', speed: 1000, intensity: 5, threshold: 3, delay: 0, replay: false });
+		onvisible.add('h1.style8, h2.style8, h3.style8, p.style8', { style: 'fade-down', speed: 1000, intensity: 5, threshold: 3, delay: 0, replay: false });
+		onvisible.add('.video.style1', { style: 'fade-in', speed: 1000, intensity: 5, threshold: 3, delay: 0, replay: false });
+		onvisible.add('#video02', { style: 'fade-in', speed: 1000, intensity: 5, threshold: 3, delay: 0, replay: false });
+		onvisible.add('#divider03', { style: 'fade-in', speed: 1000, intensity: 5, threshold: 3, delay: 375, replay: false });
+		onvisible.add('#video03', { style: 'fade-in', speed: 1000, intensity: 5, threshold: 3, delay: 0, replay: false });
 		onvisible.add('#container14', { style: 'fade-in', speed: 500, intensity: 2, threshold: 3, delay: 0, replay: false });
 		onvisible.add('#container08', { style: 'fade-in', speed: 500, intensity: 2, threshold: 3, delay: 0, replay: false });
 		onvisible.add('#buttons09', { style: 'fade-up', speed: 1000, intensity: 5, threshold: 3, delay: 250, replay: false });
 		onvisible.add('#text30', { style: 'fade-down', speed: 1000, intensity: 5, threshold: 3, delay: 0, replay: false });
+		onvisible.add('h1.style6, h2.style6, h3.style6, p.style6', { style: 'fade-down', speed: 1000, intensity: 5, threshold: 3, delay: 0, replay: false });
 		onvisible.add('.image.style1', { style: 'fade-up', speed: 1000, intensity: 5, threshold: 3, delay: 0, replay: false });
 		onvisible.add('#container16', { style: 'fade-in', speed: 500, intensity: 2, threshold: 3, delay: 0, replay: false });
 		onvisible.add('.container.style5', { style: 'fade-in', speed: 500, intensity: 2, threshold: 3, delay: 0, replay: false });
@@ -4189,18 +4194,14 @@
 		onvisible.add('#gallery10', { style: 'fade-up', speed: 1000, intensity: 5, threshold: 3, delay: 0, replay: false });
 		onvisible.add('#buttons01', { style: 'fade-up', speed: 1000, intensity: 5, threshold: 3, delay: 0, replay: false });
 		onvisible.add('#text40', { style: 'fade-down', speed: 1000, intensity: 5, threshold: 3, delay: 0, replay: false });
-		onvisible.add('#buttons06', { style: 'fade-up', speed: 1000, intensity: 5, threshold: 3, delay: 0, replay: false });
+		onvisible.add('#buttons06', { style: 'fade-up', speed: 1000, intensity: 5, threshold: 3, delay: 375, replay: false });
 		onvisible.add('#text47', { style: 'fade-down', speed: 1000, intensity: 5, threshold: 3, delay: 0, replay: false });
 		onvisible.add('#gallery11', { style: 'fade-up', speed: 1000, intensity: 5, threshold: 3, delay: 0, replay: false });
 		onvisible.add('#container36', { style: 'fade-in', speed: 500, intensity: 2, threshold: 3, delay: 0, replay: false });
-		onvisible.add('#gallery09', { style: 'fade-up', speed: 1000, intensity: 5, threshold: 3, delay: 0, replay: false });
+		onvisible.add('.gallery.style3', { style: 'fade-up', speed: 1000, intensity: 5, threshold: 3, delay: 0, replay: false });
 		onvisible.add('#container38', { style: 'fade-in', speed: 500, intensity: 2, threshold: 3, delay: 0, replay: false });
-		onvisible.add('#divider02', { style: 'fade-in', speed: 1000, intensity: 5, threshold: 3, delay: 375, replay: false });
-		onvisible.add('#container37', { style: 'fade-in', speed: 500, intensity: 2, threshold: 3, delay: 0, replay: false });
-		onvisible.add('#gallery12', { style: 'fade-up', speed: 1000, intensity: 5, threshold: 3, delay: 0, replay: false });
 		onvisible.add('#container03', { style: 'fade-in', speed: 500, intensity: 2, threshold: 3, delay: 0, replay: false });
 		onvisible.add('.buttons.style3', { style: 'fade-up', speed: 1000, intensity: 5, threshold: 3, delay: 0, replay: false });
-		onvisible.add('#container04', { style: 'fade-in', speed: 500, intensity: 2, threshold: 3, delay: 0, replay: false });
 	
 	// Run ready handlers.
 		ready.run();
