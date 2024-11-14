@@ -583,6 +583,76 @@ h1.style5 span.p:nth-child(n + 2), h2.style5 span.p:nth-child(n + 2), h3.style5 
 	margin-top: 1rem;
 }
 
+#text28:not(:first-child) {
+	margin-top: 1.5rem !important;
+}
+
+#text28:not(:last-child) {
+	margin-bottom: 1.5rem !important;
+}
+
+#text28 {
+	max-width: 61.375rem;
+	margin-left: var(--margin-left);
+	margin-right: var(--margin-right);
+	text-transform: uppercase;
+	color: #FFFFFF;
+	font-family: 'Sora', sans-serif;
+	letter-spacing: 0.05rem;
+	width: calc(100% + 0.05rem);
+	font-size: 1.5em;
+	line-height: 1.5;
+	font-weight: 800;
+	text-shadow: 0.221rem 0.221rem 0.125rem rgba(0,0,0,0.631);
+}
+
+#text28 a {
+	text-decoration: underline;
+}
+
+#text28 a:hover {
+	text-decoration: none;
+}
+
+#text28 span.p:nth-child(n + 2) {
+	margin-top: 1rem;
+}
+
+h1.style9:not(:first-child), h2.style9:not(:first-child), h3.style9:not(:first-child), p.style9:not(:first-child) {
+	margin-top: 1.5rem !important;
+}
+
+h1.style9:not(:last-child), h2.style9:not(:last-child), h3.style9:not(:last-child), p.style9:not(:last-child) {
+	margin-bottom: 1.5rem !important;
+}
+
+h1.style9, h2.style9, h3.style9, p.style9 {
+	max-width: 61.375rem;
+	margin-left: var(--margin-left);
+	margin-right: var(--margin-right);
+	text-transform: uppercase;
+	color: #FFFFFF;
+	font-family: 'Sora', sans-serif;
+	letter-spacing: 0.05rem;
+	width: calc(100% + 0.05rem);
+	font-size: 0.75em;
+	line-height: 1.5;
+	font-weight: 800;
+	text-shadow: 0.221rem 0.221rem 0.125rem rgba(0,0,0,0.631);
+}
+
+h1.style9 a, h2.style9 a, h3.style9 a, p.style9 a {
+	text-decoration: underline;
+}
+
+h1.style9 a:hover, h2.style9 a:hover, h3.style9 a:hover, p.style9 a:hover {
+	text-decoration: none;
+}
+
+h1.style9 span.p:nth-child(n + 2), h2.style9 span.p:nth-child(n + 2), h3.style9 span.p:nth-child(n + 2), p.style9 span.p:nth-child(n + 2) {
+	margin-top: 1rem;
+}
+
 #text09 {
 	text-transform: uppercase;
 	color: #FFFFFF;
@@ -604,41 +674,6 @@ h1.style5 span.p:nth-child(n + 2), h2.style5 span.p:nth-child(n + 2), h3.style5 
 }
 
 #text09 span.p:nth-child(n + 2) {
-	margin-top: 1rem;
-}
-
-h1.style9:not(:first-child), h2.style9:not(:first-child), h3.style9:not(:first-child), p.style9:not(:first-child) {
-	margin-top: 1.5rem !important;
-}
-
-h1.style9:not(:last-child), h2.style9:not(:last-child), h3.style9:not(:last-child), p.style9:not(:last-child) {
-	margin-bottom: 1.5rem !important;
-}
-
-h1.style9, h2.style9, h3.style9, p.style9 {
-	max-width: 61.375rem;
-	margin-left: var(--margin-left);
-	margin-right: var(--margin-right);
-	text-transform: uppercase;
-	color: #FFFFFF;
-	font-family: 'Sora', sans-serif;
-	letter-spacing: 0.05rem;
-	width: calc(100% + 0.05rem);
-	font-size: 1.125em;
-	line-height: 1.5;
-	font-weight: 800;
-	text-shadow: 0.221rem 0.221rem 0.125rem rgba(0,0,0,0.631);
-}
-
-h1.style9 a, h2.style9 a, h3.style9 a, p.style9 a {
-	text-decoration: underline;
-}
-
-h1.style9 a:hover, h2.style9 a:hover, h3.style9 a:hover, p.style9 a:hover {
-	text-decoration: none;
-}
-
-h1.style9 span.p:nth-child(n + 2), h2.style9 span.p:nth-child(n + 2), h3.style9 span.p:nth-child(n + 2), p.style9 span.p:nth-child(n + 2) {
 	margin-top: 1rem;
 }
 
@@ -1510,7 +1545,7 @@ h1.style6 span.p:nth-child(n + 2), h2.style6 span.p:nth-child(n + 2), h3.style6 
 
 #container13 > .wrapper {
 	display: inline-block;
-	width: 68rem;
+	width: 80rem;
 	background-color: rgba(255,255,255,0.059);
 	background-image: url('data:image/svg+xml;charset=utf8,%3Csvg%20viewBox%3D%220%200%20512%20512%22%20width%3D%22512%22%20height%3D%22512%22%20version%3D%221.1%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%20%3Cfilter%20id%3D%22noise%22%3E%20%3CfeTurbulence%20type%3D%22fractalNoise%22%20baseFrequency%3D%220.875%22%20result%3D%22noise%22%20%2F%3E%20%3CfeColorMatrix%20type%3D%22matrix%22%20values%3D%220%200%200%200%200%200%200%200%200%200%200%200%200%200%200%200%200%200%200.1796875%200%22%20%2F%3E%20%3C%2Ffilter%3E%20%3Crect%20filter%3D%22url%28%23noise%29%22%20x%3D%220%22%20y%3D%220%22%20width%3D%22512%22%20height%3D%22512%22%20fill%3D%22transparent%22%20opacity%3D%221%22%20%2F%3E%3C%2Fsvg%3E');
 	background-size: 512px;
@@ -1657,11 +1692,15 @@ h1.style6 span.p:nth-child(n + 2), h2.style6 span.p:nth-child(n + 2), h3.style6 
 }
 
 #container13 > .wrapper > .inner > :nth-child(1) {
-	width: 50%;
+	width: 33.33333%;
 }
 
 #container13 > .wrapper > .inner > :nth-child(2) {
-	width: 50%;
+	width: 33.33333%;
+}
+
+#container13 > .wrapper > .inner > :nth-child(3) {
+	width: 33.33333%;
 }
 
 #container01 {
@@ -1675,7 +1714,7 @@ h1.style6 span.p:nth-child(n + 2), h2.style6 span.p:nth-child(n + 2), h3.style6 
 
 #container01 > .wrapper {
 	display: inline-block;
-	width: 68rem;
+	width: 80rem;
 	background-color: rgba(255,255,255,0.059);
 	background-image: url('data:image/svg+xml;charset=utf8,%3Csvg%20viewBox%3D%220%200%20512%20512%22%20width%3D%22512%22%20height%3D%22512%22%20version%3D%221.1%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%20%3Cfilter%20id%3D%22noise%22%3E%20%3CfeTurbulence%20type%3D%22fractalNoise%22%20baseFrequency%3D%220.875%22%20result%3D%22noise%22%20%2F%3E%20%3CfeColorMatrix%20type%3D%22matrix%22%20values%3D%220%200%200%200%200%200%200%200%200%200%200%200%200%200%200%200%200%200%200.1796875%200%22%20%2F%3E%20%3C%2Ffilter%3E%20%3Crect%20filter%3D%22url%28%23noise%29%22%20x%3D%220%22%20y%3D%220%22%20width%3D%22512%22%20height%3D%22512%22%20fill%3D%22transparent%22%20opacity%3D%221%22%20%2F%3E%3C%2Fsvg%3E');
 	background-size: 512px;
@@ -1822,11 +1861,15 @@ h1.style6 span.p:nth-child(n + 2), h2.style6 span.p:nth-child(n + 2), h3.style6 
 }
 
 #container01 > .wrapper > .inner > :nth-child(1) {
-	width: 50%;
+	width: 33.33333%;
 }
 
 #container01 > .wrapper > .inner > :nth-child(2) {
-	width: 50%;
+	width: 33.33333%;
+}
+
+#container01 > .wrapper > .inner > :nth-child(3) {
+	width: 33.33333%;
 }
 
 #container10 {
@@ -4713,15 +4756,15 @@ hr.style2:before {
 	border-radius: 0px;
 }
 
-#divider06:not(:first-child) {
+#divider07:not(:first-child) {
 	margin-top: 0.875rem !important;
 }
 
-#divider06:not(:last-child) {
+#divider07:not(:last-child) {
 	margin-bottom: 0.875rem !important;
 }
 
-#divider06:before {
+#divider07:before {
 	width: 52rem;
 	background-color: #FFFFFF;
 	height: 2px;
@@ -6747,6 +6790,17 @@ hr.style2:before {
 		width: 100% !important;
 	}
 	
+	#container13 > .wrapper > .inner > :nth-child(3) {
+		--alignment: center;
+		--flex-alignment: center;
+		--indent-left: 1;
+		--indent-right: 1;
+		--margin-left: auto;
+		--margin-right: auto;
+		min-height: 100% !important;
+		width: 100% !important;
+	}
+	
 	#container01 {
 		--alignment: center;
 		--flex-alignment: center;
@@ -6860,6 +6914,17 @@ hr.style2:before {
 	}
 	
 	#container01 > .wrapper > .inner > :nth-child(2) {
+		--alignment: center;
+		--flex-alignment: center;
+		--indent-left: 1;
+		--indent-right: 1;
+		--margin-left: auto;
+		--margin-right: auto;
+		min-height: 100% !important;
+		width: 100% !important;
+	}
+	
+	#container01 > .wrapper > .inner > :nth-child(3) {
 		--alignment: center;
 		--flex-alignment: center;
 		--indent-left: 1;
@@ -9008,11 +9073,19 @@ hr.style2:before {
 		line-height: 1;
 	}
 	
-	#text09 {
-		letter-spacing: 0.04375rem;
-		width: calc(100% + 0.04375rem);
-		font-size: 1.375em;
-		line-height: 1.5;
+	#text28:not(:first-child) {
+		margin-top: 1.125rem !important;
+	}
+	
+	#text28:not(:last-child) {
+		margin-bottom: 1.125rem !important;
+	}
+	
+	#text28 {
+		letter-spacing: 0.05rem;
+		width: calc(100% + 0.05rem);
+		font-size: 0.75em;
+		line-height: 1.375;
 	}
 	
 	h1.style9:not(:first-child), h2.style9:not(:first-child), h3.style9:not(:first-child), p.style9:not(:first-child) {
@@ -9028,6 +9101,13 @@ hr.style2:before {
 		width: calc(100% + 0.05rem);
 		font-size: 0.75em;
 		line-height: 1.375;
+	}
+	
+	#text09 {
+		letter-spacing: 0.04375rem;
+		width: calc(100% + 0.04375rem);
+		font-size: 1.375em;
+		line-height: 1.5;
 	}
 	
 	h1.style8, h2.style8, h3.style8, p.style8 {
@@ -9638,15 +9718,15 @@ hr.style2:before {
 		width: 52rem;
 	}
 	
-	#divider06:not(:first-child) {
+	#divider07:not(:first-child) {
 		margin-top: 0.25rem !important;
 	}
 	
-	#divider06:not(:last-child) {
+	#divider07:not(:last-child) {
 		margin-bottom: 0.25rem !important;
 	}
 	
-	#divider06:before {
+	#divider07:before {
 		width: 52rem;
 	}
 	
@@ -9999,12 +10079,16 @@ hr.style2:before {
 		font-size: 2em;
 	}
 	
-	#text09 {
-		font-size: 1.375em;
+	#text28 {
+		font-size: 0.75em;
 	}
 	
 	h1.style9, h2.style9, h3.style9, p.style9 {
 		font-size: 0.75em;
+	}
+	
+	#text09 {
+		font-size: 1.375em;
 	}
 	
 	h1.style8, h2.style8, h3.style8, p.style8 {

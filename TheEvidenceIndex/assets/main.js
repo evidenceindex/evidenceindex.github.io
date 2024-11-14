@@ -4159,9 +4159,10 @@
 		onvisible.add('.links.style1', { style: 'fade-up', speed: 1000, intensity: 5, threshold: 3, delay: 0, replay: false });
 		onvisible.add('h1.style5, h2.style5, h3.style5, p.style5', { style: 'fade-down', speed: 1000, intensity: 5, threshold: 3, delay: 0, replay: false });
 		onvisible.add('#divider02', { style: 'fade-in', speed: 1000, intensity: 5, threshold: 3, delay: 375, replay: false });
-		onvisible.add('#text09', { style: 'fade-up', speed: 1000, intensity: 5, threshold: 3, delay: 0, replay: false });
+		onvisible.add('#text28', { style: 'fade-up', speed: 1000, intensity: 5, threshold: 3, delay: 0, replay: false });
 		onvisible.add('h1.style9, h2.style9, h3.style9, p.style9', { style: 'fade-up', speed: 1000, intensity: 5, threshold: 3, delay: 0, replay: false });
-		onvisible.add('#divider06', { style: 'fade-in', speed: 1000, intensity: 5, threshold: 3, delay: 375, replay: false });
+		onvisible.add('#text09', { style: 'fade-up', speed: 1000, intensity: 5, threshold: 3, delay: 0, replay: false });
+		onvisible.add('#divider07', { style: 'fade-in', speed: 1000, intensity: 5, threshold: 3, delay: 375, replay: false });
 		onvisible.add('#gallery02', { style: 'fade-up', speed: 1000, intensity: 5, threshold: 3, delay: 0, replay: false });
 		onvisible.add('#container10', { style: 'fade-in', speed: 500, intensity: 2, threshold: 3, delay: 0, replay: false });
 		onvisible.add('h1.style8, h2.style8, h3.style8, p.style8', { style: 'fade-down', speed: 1000, intensity: 5, threshold: 3, delay: 0, replay: false });
