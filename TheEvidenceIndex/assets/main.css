@@ -2687,16 +2687,20 @@ h1.style6 span.p:nth-child(n + 2), h2.style6 span.p:nth-child(n + 2), h3.style6 
 	width: 100%;
 }
 
+#container04 > .wrapper > .inner > :nth-child(1) {
+	width: calc(50% + (var(--gutters) / 2));
+}
+
+#container04 > .wrapper > .inner > :nth-child(2) {
+	width: calc(50% + (var(--gutters) / 2));
+}
+
 #container22 > .wrapper > .inner > :nth-child(1) {
-	width: calc(33.33333% + (var(--gutters) / 3));
+	width: calc(50% + (var(--gutters) / 2));
 }
 
 #container22 > .wrapper > .inner > :nth-child(2) {
-	width: calc(33.33333% + (var(--gutters) / 3));
-}
-
-#container22 > .wrapper > .inner > :nth-child(3) {
-	width: calc(33.33333% + (var(--gutters) / 3));
+	width: calc(50% + (var(--gutters) / 2));
 }
 
 #container06 {
@@ -7517,6 +7521,28 @@ hr.style2:before {
 		min-height: 35rem;
 	}
 	
+	#container04 > .wrapper > .inner > :nth-child(1) {
+		--alignment: center;
+		--flex-alignment: center;
+		--indent-left: 1;
+		--indent-right: 1;
+		--margin-left: auto;
+		--margin-right: auto;
+		min-height: 100% !important;
+		width: 100% !important;
+	}
+	
+	#container04 > .wrapper > .inner > :nth-child(2) {
+		--alignment: center;
+		--flex-alignment: center;
+		--indent-left: 1;
+		--indent-right: 1;
+		--margin-left: auto;
+		--margin-right: auto;
+		min-height: 100% !important;
+		width: 100% !important;
+	}
+	
 	#container22 > .wrapper > .inner > :nth-child(1) {
 		--alignment: center;
 		--flex-alignment: center;
@@ -7529,17 +7555,6 @@ hr.style2:before {
 	}
 	
 	#container22 > .wrapper > .inner > :nth-child(2) {
-		--alignment: center;
-		--flex-alignment: center;
-		--indent-left: 1;
-		--indent-right: 1;
-		--margin-left: auto;
-		--margin-right: auto;
-		min-height: 100% !important;
-		width: 100% !important;
-	}
-	
-	#container22 > .wrapper > .inner > :nth-child(3) {
 		--alignment: center;
 		--flex-alignment: center;
 		--indent-left: 1;
